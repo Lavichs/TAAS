@@ -17,4 +17,5 @@ thumb
 sketch
 
 .idea
-build/bundle.ks
+frontend/public/
+frontend/public/images

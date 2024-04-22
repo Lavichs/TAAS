@@ -24,7 +24,7 @@ const Catalog = () => {
 
     return (
         <div className='catalog'>
-            <h2 style={{textAlign: 'center'}}>КАТАЛОГ</h2>
+            <h1 style={{textAlign: 'center'}}>КАТАЛОГ</h1>
             <MyList tours={tours}/>
         </div>
     );
