@@ -25438,28 +25438,28 @@
     return matchPath(path.pathname, nextPath) != null || matchPath(path.pathname, currentPath) != null;
   }
 
-  // src/components/Catalog.jsx
+  // src/pages/Catalog.jsx
   var import_react = __toESM(require_react());
   var Catalog = () => {
     return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("h3", null, "\u041A\u0410\u0422\u0410\u041B\u041E\u0413"));
   };
   var Catalog_default = Catalog;
 
-  // src/components/Bookings.jsx
+  // src/pages/Bookings.jsx
   var import_react2 = __toESM(require_react());
   var Bookings = () => {
     return /* @__PURE__ */ import_react2.default.createElement("div", null, "\u0411\u0420\u041E\u041D\u0418\u0420\u041E\u0412\u0410\u041D\u0418\u042F");
   };
   var Bookings_default = Bookings;
 
-  // src/components/Discounts.jsx
+  // src/pages/Discounts.jsx
   var import_react3 = __toESM(require_react());
   var Discounts = () => {
     return /* @__PURE__ */ import_react3.default.createElement("div", null, "\u0421\u041A\u0418\u0414\u041A\u0418");
   };
   var Discounts_default = Discounts;
 
-  // src/components/NotFoundPage.jsx
+  // src/pages/NotFoundPage.jsx
   var import_react4 = __toESM(require_react());
   var NotFoundPage = () => {
     return /* @__PURE__ */ import_react4.default.createElement("div", null, "\u0421\u0422\u0420\u0410\u041D\u0418\u0426\u0410 \u041D\u0415 \u041D\u0410\u0419\u0414\u0415\u041D\u0410");

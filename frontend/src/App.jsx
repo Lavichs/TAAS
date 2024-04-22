@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Link, Route, Routes} from "react-router-dom";
-import Catalog from "./components/Catalog";
-import Bookings from "./components/Bookings";
-import Discounts from "./components/Discounts";
-import NotFoundPage from "./components/NotFoundPage";
+import Catalog from "./pages/Catalog";
+import Bookings from "./pages/Bookings";
+import Discounts from "./pages/Discounts";
+import NotFoundPage from "./pages/NotFoundPage";
 
 class App extends Component {
     render() {
