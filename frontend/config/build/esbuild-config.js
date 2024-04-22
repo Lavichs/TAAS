@@ -1,5 +1,6 @@
 const ESBuild = require('esbuild')
 const path = require('path')
+const sassPlugin = require('esbuild-plugin-sass');
 
 const mode = process.env.MODE || 'development';
 
@@ -16,6 +17,7 @@ module.exports = {
         '.png': 'file',
         '.jpg': 'file',
         '.svg': 'file'},
+    plugins: [sassPlugin()],
 }
 
 // ESBuild.build({

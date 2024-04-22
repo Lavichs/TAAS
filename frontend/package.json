@@ -14,6 +14,7 @@
   "devDependencies": {
     "cross-env": "^7.0.3",
     "esbuild": "0.20.2",
+    "esbuild-plugin-sass": "^1.0.1",
     "react-router-dom": "^6.22.3"
   },
   "dependencies": {

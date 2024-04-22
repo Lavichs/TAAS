@@ -2382,9 +2382,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React9 = require_react();
+          var React11 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React9.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React11.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3989,7 +3989,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React9.Children.forEach(props.children, function(child) {
+                  React11.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -12436,7 +12436,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React9.Component().refs;
+          var emptyRefsObject = new React11.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -23508,11 +23508,11 @@
   });
 
   // src/index.jsx
-  var import_react6 = __toESM(require_react());
+  var import_react8 = __toESM(require_react());
   var import_client = __toESM(require_client());
 
   // src/App.jsx
-  var import_react5 = __toESM(require_react());
+  var import_react7 = __toESM(require_react());
 
   // node_modules/react-router-dom/dist/index.js
   var React2 = __toESM(require_react());
@@ -25439,46 +25439,79 @@
   }
 
   // src/pages/Catalog.jsx
+  var import_react3 = __toESM(require_react());
+
+  // src/components/ListItem.jsx
   var import_react = __toESM(require_react());
+  var ListItem = (props) => {
+    return /* @__PURE__ */ import_react.default.createElement("div", { className: "item" }, /* @__PURE__ */ import_react.default.createElement("strong", { style: { width: "150px", textAlign: "left", padding: 0 } }, props.number, ". ", props.tour.country), /* @__PURE__ */ import_react.default.createElement("div", { style: { width: "250px", textAlign: "center" } }, props.tour.city1, "-", props.tour.city2), /* @__PURE__ */ import_react.default.createElement("div", { style: { width: "150px", textAlign: "center" } }, props.tour.price, "\u20BD"), /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("button", { className: "item_btn" }, "\u0412\u044B\u0431\u0440\u0430\u0442\u044C")));
+  };
+  var ListItem_default = ListItem;
+
+  // src/components/MyList.jsx
+  var import_react2 = __toESM(require_react());
+  var MyList = (props) => {
+    return /* @__PURE__ */ import_react2.default.createElement("div", null, props.tours.map(
+      (tour, index) => /* @__PURE__ */ import_react2.default.createElement(ListItem_default, { number: index + 1, tour, key: tour.id })
+    ));
+  };
+  var MyList_default = MyList;
+
+  // src/pages/Catalog.jsx
   var Catalog = () => {
-    return /* @__PURE__ */ import_react.default.createElement("div", null, /* @__PURE__ */ import_react.default.createElement("h3", null, "\u041A\u0410\u0422\u0410\u041B\u041E\u0413"));
+    const [tours, setTour] = (0, import_react3.useState)([
+      { id: 1, country: "Russia", city1: "Orenburg", city2: "Moscow", price: 21e3, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur dolorum explicabo fugit impedit non reiciendis similique! At consequuntur eaque est eveniet impedit minima quam qui rem repellat similique vero, voluptatem!" },
+      { id: 2, country: "Russia", city1: "Orenburg", city2: "Yekaterinburg", price: 15e3, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci architecto aut consectetur consequatur cupiditate distinctio dolores, fugit ipsa magnam, maxime neque nulla quas rem repudiandae soluta temporibus ullam. Tempora!" },
+      { id: 3, country: "Russia", city1: "Yekaterinburg", city2: "Vladivostok", price: 28900, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aut deleniti dolor eligendi, ex fuga impedit iste, itaque magni, modi nesciunt odio repellendus voluptatibus! Dolorum ducimus eos ex odit voluptatibus." },
+      { id: 4, country: "Kazakhstan", city1: "Orenburg", city2: "Astana", price: 37600, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores dignissimos facere nihil voluptas! Enim, nobis tempore! Pariatur quam quos suscipit voluptatem? Animi consectetur dolore itaque iure libero nulla officia, velit." },
+      { id: 5, country: "USA", city1: "Moscow", city2: "Washington", price: 69900, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, aspernatur culpa et excepturi ipsam molestiae molestias nobis, officia praesentium quasi, qui quidem quo reiciendis tempore voluptatum! Dolores exercitationem iure pariatur." },
+      { id: 6, country: "Britain", city1: "Moscow", city2: "London", price: 51e3, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid amet at consequuntur, corporis dignissimos, error ex in iure iusto minus nostrum pariatur perferendis perspiciatis quam quia quis veniam voluptas." },
+      { id: 7, country: "China", city1: "Moscow", city2: "Pekin", price: 54200, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate dicta eos fuga minus, nostrum officia repellat reprehenderit suscipit! Asperiores corporis dignissimos esse explicabo facilis fuga, minima non provident qui repellendus?" },
+      { id: 8, country: "South Korea", city1: "Yekaterinburg", city2: "Seul", price: 72e3, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dicta dolores, doloribus, explicabo harum illo ipsa maxime minus neque, possimus rerum sunt vero. Aliquam ipsam ipsum quasi quod reiciendis temporibus!" },
+      { id: 9, country: "Russia", city1: "Yekaterinburg", city2: "Vladivostok", price: 28900, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aut deleniti dolor eligendi, ex fuga impedit iste, itaque magni, modi nesciunt odio repellendus voluptatibus! Dolorum ducimus eos ex odit voluptatibus." },
+      { id: 10, country: "Kazakhstan", city1: "Orenburg", city2: "Astana", price: 37600, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores dignissimos facere nihil voluptas! Enim, nobis tempore! Pariatur quam quos suscipit voluptatem? Animi consectetur dolore itaque iure libero nulla officia, velit." },
+      { id: 11, country: "USA", city1: "Moscow", city2: "Washington", price: 69900, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, aspernatur culpa et excepturi ipsam molestiae molestias nobis, officia praesentium quasi, qui quidem quo reiciendis tempore voluptatum! Dolores exercitationem iure pariatur." },
+      { id: 12, country: "Britain", city1: "Moscow", city2: "London", price: 51e3, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid amet at consequuntur, corporis dignissimos, error ex in iure iusto minus nostrum pariatur perferendis perspiciatis quam quia quis veniam voluptas." },
+      { id: 13, country: "China", city1: "Moscow", city2: "Pekin", price: 54200, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate dicta eos fuga minus, nostrum officia repellat reprehenderit suscipit! Asperiores corporis dignissimos esse explicabo facilis fuga, minima non provident qui repellendus?" },
+      { id: 14, country: "South Korea", city1: "Yekaterinburg", city2: "Seul", price: 72e3, description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad dicta dolores, doloribus, explicabo harum illo ipsa maxime minus neque, possimus rerum sunt vero. Aliquam ipsam ipsum quasi quod reiciendis temporibus!" }
+    ]);
+    const tour = { id: 1, country: "Russia", city1: "Orenburg", city2: "Moscow", price: 15e3 };
+    return /* @__PURE__ */ import_react3.default.createElement("div", { className: "catalog" }, /* @__PURE__ */ import_react3.default.createElement("h2", { style: { textAlign: "center" } }, "\u041A\u0410\u0422\u0410\u041B\u041E\u0413"), /* @__PURE__ */ import_react3.default.createElement(MyList_default, { tours }));
   };
   var Catalog_default = Catalog;
 
   // src/pages/Bookings.jsx
-  var import_react2 = __toESM(require_react());
+  var import_react4 = __toESM(require_react());
   var Bookings = () => {
-    return /* @__PURE__ */ import_react2.default.createElement("div", null, "\u0411\u0420\u041E\u041D\u0418\u0420\u041E\u0412\u0410\u041D\u0418\u042F");
+    return /* @__PURE__ */ import_react4.default.createElement("div", null, "\u0411\u0420\u041E\u041D\u0418\u0420\u041E\u0412\u0410\u041D\u0418\u042F");
   };
   var Bookings_default = Bookings;
 
   // src/pages/Discounts.jsx
-  var import_react3 = __toESM(require_react());
+  var import_react5 = __toESM(require_react());
   var Discounts = () => {
-    return /* @__PURE__ */ import_react3.default.createElement("div", null, "\u0421\u041A\u0418\u0414\u041A\u0418");
+    return /* @__PURE__ */ import_react5.default.createElement("div", null, "\u0421\u041A\u0418\u0414\u041A\u0418");
   };
   var Discounts_default = Discounts;
 
   // src/pages/NotFoundPage.jsx
-  var import_react4 = __toESM(require_react());
+  var import_react6 = __toESM(require_react());
   var NotFoundPage = () => {
-    return /* @__PURE__ */ import_react4.default.createElement("div", null, "\u0421\u0422\u0420\u0410\u041D\u0418\u0426\u0410 \u041D\u0415 \u041D\u0410\u0419\u0414\u0415\u041D\u0410");
+    return /* @__PURE__ */ import_react6.default.createElement("div", null, "\u0421\u0422\u0420\u0410\u041D\u0418\u0426\u0410 \u041D\u0415 \u041D\u0410\u0419\u0414\u0415\u041D\u0410");
   };
   var NotFoundPage_default = NotFoundPage;
 
   // src/App.jsx
-  var App = class extends import_react5.Component {
-    render() {
-      return /* @__PURE__ */ import_react5.default.createElement(import_react5.default.Fragment, null, /* @__PURE__ */ import_react5.default.createElement("div", null, /* @__PURE__ */ import_react5.default.createElement("ul", null, /* @__PURE__ */ import_react5.default.createElement("li", null, /* @__PURE__ */ import_react5.default.createElement(Link, { to: "/" }, "catalog")), /* @__PURE__ */ import_react5.default.createElement("li", null, /* @__PURE__ */ import_react5.default.createElement(Link, { to: "/bookings" }, "booking")), /* @__PURE__ */ import_react5.default.createElement("li", null, /* @__PURE__ */ import_react5.default.createElement(Link, { to: "/discounts" }, "discounts")))), "HELLO WORLD!", /* @__PURE__ */ import_react5.default.createElement(Routes, null, /* @__PURE__ */ import_react5.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react5.default.createElement(Catalog_default, null) }), /* @__PURE__ */ import_react5.default.createElement(Route, { path: "/bookings", element: /* @__PURE__ */ import_react5.default.createElement(Bookings_default, null) }), /* @__PURE__ */ import_react5.default.createElement(Route, { path: "/discounts", element: /* @__PURE__ */ import_react5.default.createElement(Discounts_default, null) }), /* @__PURE__ */ import_react5.default.createElement(Route, { path: "*", element: /* @__PURE__ */ import_react5.default.createElement(NotFoundPage_default, null) })));
-    }
-  };
+  function App() {
+    return /* @__PURE__ */ import_react7.default.createElement("div", { className: "App" }, /* @__PURE__ */ import_react7.default.createElement("div", null, /* @__PURE__ */ import_react7.default.createElement("ul", null, /* @__PURE__ */ import_react7.default.createElement("li", null, /* @__PURE__ */ import_react7.default.createElement(Link, { to: "/" }, "catalog")), /* @__PURE__ */ import_react7.default.createElement("li", null, /* @__PURE__ */ import_react7.default.createElement(Link, { to: "/bookings" }, "booking")), /* @__PURE__ */ import_react7.default.createElement("li", null, /* @__PURE__ */ import_react7.default.createElement(Link, { to: "/discounts" }, "discounts")))), "HELLO WORLD!", /* @__PURE__ */ import_react7.default.createElement(Routes, null, /* @__PURE__ */ import_react7.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react7.default.createElement(Catalog_default, null) }), /* @__PURE__ */ import_react7.default.createElement(Route, { path: "/bookings", element: /* @__PURE__ */ import_react7.default.createElement(Bookings_default, null) }), /* @__PURE__ */ import_react7.default.createElement(Route, { path: "/discounts", element: /* @__PURE__ */ import_react7.default.createElement(Discounts_default, null) }), /* @__PURE__ */ import_react7.default.createElement(Route, { path: "*", element: /* @__PURE__ */ import_react7.default.createElement(NotFoundPage_default, null) })));
+  }
   var App_default = App;
 
   // src/index.jsx
   var rootElement = document.getElementById("root");
   var root = (0, import_client.createRoot)(rootElement);
   root.render(
-    /* @__PURE__ */ import_react6.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react6.default.createElement(App_default, null))
+    /* @__PURE__ */ import_react8.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react8.default.createElement(App_default, null))
   );
 })();
 /*! Bundled license information:
