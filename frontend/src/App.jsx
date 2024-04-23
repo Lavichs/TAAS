@@ -4,7 +4,7 @@ import Catalog from "./pages/Catalog";
 import Bookings from "./pages/Bookings";
 import Discounts from "./pages/Discounts";
 import NotFoundPage from "./pages/NotFoundPage";
-import './style/App.css';
+import './style/App.scss';
 import './style/item_button.scss'
 import NavBar from "./components/NavBar";
 import {BOOKINGS_ROUTE, CATALOG_ROUTE, DISCOUNTS_ROUTE} from "./consts";

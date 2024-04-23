@@ -5,7 +5,7 @@ const MyList = (props) => {
     return (
         <div>
             {props.tours.map((tour, index) =>
-                <ListItem number={index+1} tour={tour} key={tour.id}/>
+                <ListItem number={index+1} tour={tour} key={tour.id} chooseItem={props.chooseItem}/>
             )}
         </div>
     );

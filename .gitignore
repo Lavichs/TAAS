@@ -17,5 +17,5 @@ thumb
 sketch
 
 .idea
-frontend/public/
+frontend/build
 frontend/public/images

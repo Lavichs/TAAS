@@ -13,7 +13,9 @@ const ListItem = (props) => {
                 {props.tour.price}₽
             </div>
             <div>
-                <button className='item_btn'>Выбрать</button>
+                <button className='item_btn' onClick={() => {
+                    props.chooseItem(props.tour);
+                }}>Выбрать</button>
             </div>
         </div>
     );

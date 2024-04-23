@@ -1,6 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import ListItem from "../components/ListItem";
 import MyList from "../components/MyList";
+import MyModal from "../components/MyModal/MyModal";
+import TourDescription from "../components/TourDescription/TourDescription";
+import {Form} from "react-router-dom";
 
 const Catalog = () => {
     const [tours, setTour] = useState([
@@ -22,10 +25,45 @@ const Catalog = () => {
     ]);
     const tour = {id: 1, country: 'Russia', city1: 'Orenburg', city2: 'Moscow', price: 15000};
 
+    const [modalDesc, setModalDesc] = useState(false);
+    const [modalBook, setModalBook] = useState(false);
+    const [currentTour, setCurrentTour] = useState(tour)
+
+    function chooseItem(tour) {
+        setModalDesc(true)
+        setCurrentTour(tour)
+    }
+    function bookingTour() {
+        setModalBook(true)
+        setModalDesc(false)
+    }
+
+    useEffect(() => {
+        const close = (e) => {
+            if(e.key === 'Escape'){
+                setModalDesc(false)
+                setModalBook(false)
+            }
+        }
+        window.addEventListener('keydown', close)
+        return () => window.removeEventListener('keydown', close)
+    },[])
+
     return (
         <div className='catalog'>
+            <MyModal visible={modalDesc} setVisible={setModalDesc}>
+                <TourDescription currentTour={currentTour}/>
+                <button onClick={bookingTour}>Buy</button>
+            </MyModal>
+            <MyModal visible={modalBook} setVisible={setModalBook}>
+                <form>
+                    <h1>Регистрация брони</h1>
+                    <input name="query" />
+                    <button type="reset">Search</button>
+                </form>
+            </MyModal>
             <h1 style={{textAlign: 'center'}}>КАТАЛОГ</h1>
-            <MyList tours={tours}/>
+            <MyList tours={tours} chooseItem={chooseItem}/>
         </div>
     );
 };
