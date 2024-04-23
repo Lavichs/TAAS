@@ -3,6 +3,10 @@ import cl from './TourDescription.module.css';
 
 const TourDescription = ({currentTour}) => {
 
+    if (!currentTour) {
+        return <h1>Тур не выбран</h1>
+    }
+
     return (
         <div>
             <h1>{currentTour.country}</h1>
