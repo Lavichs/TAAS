@@ -19,3 +19,4 @@ sketch
 .idea
 frontend/build
 frontend/public/images
+frontend/src/API/constsURL
