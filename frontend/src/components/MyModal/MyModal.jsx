@@ -13,7 +13,6 @@ const MyModal = ({children, visible, setVisible}) => {
             className={rootClasses.join(' ')}
             onClick={() => setVisible(false)}
             onScroll={(event) => event.preventDefault()}
-            onKeyPress={(e) => console.log(e.key)}
         >
             <div className={cl.myModalContainer} onClick={(event) => event.stopPropagation()}>
                 {children}
