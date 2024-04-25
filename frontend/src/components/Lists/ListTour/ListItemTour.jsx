@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ListItem = (props) => {
+const ListItemTour = (props) => {
     return (
         <div className='item'>
             <strong style={{width: '150px', textAlign: 'left', padding: 0}}>
-                {props.number}. {props.tour.country}
+                {props.number + props.correction}. {props.tour.country}
             </strong>
             <div style={{width: '250px', textAlign: 'center'}}>
                 {props.tour.city1}-{props.tour.city2}
@@ -13,7 +13,7 @@ const ListItem = (props) => {
                 {props.tour.price}₽
             </div>
             <div>
-                <button className='item_btn' onClick={() => {
+                <button className='btn item_btn' onClick={() => {
                     props.chooseItem(props.tour);
                 }}>Выбрать</button>
             </div>
@@ -21,4 +21,4 @@ const ListItem = (props) => {
     );
 };
 
-export default ListItem;
+export default ListItemTour;

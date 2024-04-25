@@ -13,8 +13,11 @@
     padding: 25px;
     background: white;
     border-radius: 16px;
+    /*min-width: 60%;*/
+    /*max-width: 70%;*/
     width: 60%;
-    height: 90%;
+    height: auto;
+    min-height: 40%;
     overflow-y: scroll;
 }
 

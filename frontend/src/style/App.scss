@@ -18,8 +18,8 @@
     margin-top: 20px;
 }
 
-.catalog {
-    margin: 10px 0 20px 0;
+.catalog, .booking {
+    margin: 10px 0;
 }
 
 .item {
@@ -59,16 +59,17 @@
 }
 
 .btn-flip {
-    display: inline-block;
     padding: .55rem 1.05rem;
     color: #fff;
-    text-transform: uppercase;
     background-color: #00021a;
+
+    display: inline-block;
+    text-transform: uppercase;
+    cursor: pointer;
 
     letter-spacing: .03rem;
     outline: 2px ridge rgb(220, 0, 0);
     border-radius: 10rem;
-    cursor: pointer;
 
     transition: all .3s;
 }
@@ -77,4 +78,18 @@
     background-color: rgb(220, 0, 0);
 }
 
+#note {
+    position: absolute;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fde073;
+    text-align: center;
+    line-height: 2.5;
+    overflow: hidden;
+    -webkit-box-shadow: 0 0 5px black;
+    -moz-box-shadow:    0 0 5px black;
+    box-shadow:         0 0 5px black;
+}
 

@@ -1,0 +1,96 @@
+.booking_container {
+    height: 90%;
+}
+.bookingDesc {
+    /*height: 100%;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*!*justify-content: space-evenly;*!*/
+    /*font-size: 16px;*/
+}
+
+.tourCard {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 20px;
+    margin: 10px;
+
+    font-size: 18px;
+}
+
+.tourCard h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.status {
+    color: green;
+}
+
+.changeStatus {
+    width: 160px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 10px;
+    /*border: none;*/
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 17px;
+    border: 1px solid #00021a;
+    box-shadow: 4px 4px #ccc;
+}
+
+.changeStatus:hover {
+    background-color: #49f;
+}
+
+.inputBox {
+    margin-top: 20px;
+}
+
+.mySelect {
+    width: 160px;
+    height: 35px;
+    /*border: 1px solid #999;*/
+    font-size: 17px;
+    color: #ffffff;
+    background-color: #3c9cff;
+    border-radius: 5px;
+    box-shadow: 4px 4px #ccc;
+    margin-right: 10px;
+    cursor: pointer;
+    border: 1px solid #0056b3;
+}
+option:disabled {
+     color: #ffffff;
+}
+
+
+.myBtn {
+    transition: all .1s linear;
+    text-transform: uppercase;
+    padding: .55rem 2.05rem;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+.btnSubmit {
+    outline: #18933f;
+    background-color: white;
+}
+.btnSubmit:hover {
+    background-color: #18933f;
+    color: white;
+}
+
+.btnCancel {
+    outline: #dc0f0f;
+    background-color: white;
+}
+.btnCancel:hover {
+    background-color: #dc0f0f;
+    color: white;
+}
+

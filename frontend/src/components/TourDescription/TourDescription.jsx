@@ -8,8 +8,8 @@ const TourDescription = ({currentTour}) => {
     }
 
     return (
-        <div>
-            <h1>{currentTour.country}</h1>
+        <div className={cl.tourCard}>
+            <h2>{currentTour.country}</h2>
             <div>
                 <div>
                     <div>3 мая</div>
