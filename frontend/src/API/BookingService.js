@@ -12,9 +12,10 @@ export default class BookingService {
         });
     }
 
-    static async update(status, payMethod) {
+    static async update(id, status, payMethod) {
         return await axios.get(API_RESOURCE_BOOKINGS_PUT, {
             params: {
+                id,
                 status,
                 payMethod
             }

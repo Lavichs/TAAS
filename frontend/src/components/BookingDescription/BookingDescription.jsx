@@ -17,7 +17,7 @@ const BookingDescription = ({currentBooking, setVisible, fetchBookings}) => {
         const status = s.options[s.selectedIndex].text;
         const m = methodSelect.current;
         const payMethod = m.options[m.selectedIndex].text;
-        const response = await BookingService.update(status, payMethod)
+        const response = await BookingService.update(currentBooking.id, status, payMethod)
         console.log(response);
 
         setVisible(false)
