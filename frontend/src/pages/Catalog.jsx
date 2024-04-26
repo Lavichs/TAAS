@@ -10,9 +10,11 @@ import {API_RESOURCE_TOURS} from "../API/constsURL";
 import {getPageCount} from "../utils/pages";
 import Pagination from "../components/Pagination/Pagination";
 import BookingTour from "../components/BookingTour/BookingTour";
+import {Link} from "react-router-dom";
+import {CREATE_TOUR} from "../consts";
 
 const Catalog = () => {
-    const [tours, setTour] = useState([]);
+    const [tours, setTours] = useState([]);
     const tour = {id: 1, country: 'Russia', city1: 'Orenburg', city2: 'Moscow', price: 15000};
 
     const [modalDesc, setModalDesc] = useState(false);
@@ -25,7 +27,7 @@ const Catalog = () => {
 
     const [fetchTours, isTourLoading, tourError] = useFetching(async () => {
         const response = await TourService.getAll(limit, page);
-        setTour(response.data[1]);
+        setTours(response.data[1]);
         const totalCount = response.data[0].xTotalCount;
 
         setTotalPages(getPageCount(totalCount, limit));
@@ -56,6 +58,7 @@ const Catalog = () => {
     function chooseItem(tour) {
         setModalDesc(true)
         setCurrentTour(tour)
+        console.log(tour)
     }
     function bookingTour() {
         setModalBook(true)
@@ -76,12 +79,18 @@ const Catalog = () => {
     return (
         <div className='catalog'>
             <button onClick={test}>Test</button>
-            <MyModal visible={modalDesc} setVisible={setModalDesc}>
-                <TourDescription currentTour={currentTour} toBook={bookingTour}/>
-            </MyModal>
-            <MyModal visible={modalBook} setVisible={setModalBook}>
-                <BookingTour setVisible={setModalBook} tourID={currentTour.id}/>
-            </MyModal>
+            <button><Link to={CREATE_TOUR}>Create tour</Link></button>
+            {currentTour &&
+                <>
+                    <MyModal visible={modalDesc} setVisible={setModalDesc}>
+                        <TourDescription currentTour={currentTour} toBook={bookingTour}/>
+                    </MyModal>
+                    <MyModal visible={modalBook} setVisible={setModalBook}>
+                        <BookingTour setVisible={setModalBook} tourID={currentTour?.id}/>
+                    </MyModal>
+                </>
+            }
+
             <h1 style={{display: "flex", justifyContent: "center", marginBottom: 30}}>КАТАЛОГ</h1>
             {tourError &&
                 <h1 style={{
