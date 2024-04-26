@@ -7,9 +7,27 @@
     font-size: 18px;
 }
 
+.toBook {
+    width: 160px;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 10px;
+    /*border: none;*/
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 17px;
+    border: 1px solid #00021a;
+    box-shadow: 4px 4px #ccc;
+}
 
+.toBook:hover {
+    background-color: #49f;
+}
 
-
+h2 {
+    margin-bottom: 10px;
+}
 
 
 

@@ -1,0 +1,56 @@
+.tourCard {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 20px;
+    margin: 10px;
+
+    font-size: 18px;
+}
+
+.inputBox {
+    margin-top: 20px;
+}
+
+
+.myBtn {
+    transition: all .1s linear;
+    text-transform: uppercase;
+    padding: .55rem 2.05rem;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.btnSubmit {
+    /*outline: #18933f;*/
+    /*background-color: white;*/
+    background-color: #18933f;
+    color: white;
+}
+/*.btnSubmit:hover {*/
+/*    background-color: #18933f;*/
+/*    color: white;*/
+/*}*/
+
+.btnCancel {
+    /*outline: #dc0f0f;*/
+    /*background-color: white;*/
+    background-color: #dc0f0f;
+    color: white;
+}
+/*.btnCancel:hover {*/
+/*    background-color: #dc0f0f;*/
+/*    color: white;*/
+/*}*/
+
+input {
+    outline: none;
+    transition: all .1s linear;
+    padding: .55rem 2.05rem;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+

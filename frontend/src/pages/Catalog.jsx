@@ -9,6 +9,7 @@ import TourService from "../API/TourService";
 import {API_RESOURCE_TOURS} from "../API/constsURL";
 import {getPageCount} from "../utils/pages";
 import Pagination from "../components/Pagination/Pagination";
+import BookingTour from "../components/BookingTour/BookingTour";
 
 const Catalog = () => {
     const [tours, setTour] = useState([]);
@@ -76,15 +77,10 @@ const Catalog = () => {
         <div className='catalog'>
             <button onClick={test}>Test</button>
             <MyModal visible={modalDesc} setVisible={setModalDesc}>
-                <TourDescription currentTour={currentTour}/>
-                <button onClick={bookingTour}>Buy</button>
+                <TourDescription currentTour={currentTour} toBook={bookingTour}/>
             </MyModal>
             <MyModal visible={modalBook} setVisible={setModalBook}>
-                <form>
-                    <h1>Регистрация брони</h1>
-                    <input name="query" />
-                    <button type="reset">Search</button>
-                </form>
+                <BookingTour setVisible={setModalBook} tourID={currentTour.id}/>
             </MyModal>
             <h1 style={{display: "flex", justifyContent: "center", marginBottom: 30}}>КАТАЛОГ</h1>
             {tourError &&
