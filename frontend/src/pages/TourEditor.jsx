@@ -45,6 +45,15 @@ const TourEditor = () => {
             {isTOLoading
                 ? <div style={{display: "flex", justifyContent: "center", marginTop: 60}}><Loader/></div>
                 :
+                TOError ?
+                    <h1 style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginTop: 80
+                    }}>
+                        Упс, что-то пошло не так.<br/>Пожалуйста, повторите попытку позже
+                    </h1>
+                    :
                 <>
                     <form onSubmit={submit} onChange={updateData}>
                         <input name='country' placeholder='Страна'/>
