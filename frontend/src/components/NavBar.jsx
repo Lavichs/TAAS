@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, NavLink} from "react-router-dom";
 import {BOOKINGS_ROUTE, CATALOG_ROUTE, DISCOUNTS_ROUTE} from "../consts";
-import Logo from '../../public/images/albatros-without-background.png';
+import Logo from '../../public/images/albatros-without-background-2.png';
 
 const NavBar = () => {
     return (

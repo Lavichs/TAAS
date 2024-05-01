@@ -50,3 +50,7 @@ textarea::placeholder {
     color: #9c9c9c;
     font-family: 'Roboto', sans-serif;
 }
+
+.inputCT {
+    width: 300px;
+}

@@ -23,17 +23,11 @@ const TourEditor = () => {
     const submit = e => {
         e.preventDefault()
         console.log(data)
-        e.currentTarget.clear()
+
         TourService.create(data)
     }
     const updateData = e => {
         setData({
-            tourId,
-            ...data,
-            [e.target.name]: e.target.value
-        })
-        console.log({
-            tourId,
             ...data,
             [e.target.name]: e.target.value
         })
@@ -54,19 +48,25 @@ const TourEditor = () => {
                         Упс, что-то пошло не так.<br/>Пожалуйста, повторите попытку позже
                     </h1>
                     :
-                <>
+                <div style={{display: "flex", justifyContent: "center"}}>
                     <form onSubmit={submit} onChange={updateData}>
-                        <input name='country' placeholder='Страна'/>
-                        <input name='city1' placeholder='Пункт отправления'/>
-                        <input name='city2' placeholder='Пункт назначения'/>
-                        <input name='date1' placeholder='Дата отправления (гггг-мм-дд)'/>
-                        <input name='date2' placeholder='Дата возвращения (гггг-мм-дд)'/>
-                        <input name='price' placeholder='Цена'/>
+                        <div>
+                            <input className={cl.inputCT} name='city2' placeholder='Пункт назначения'/>
+                            <input className={cl.inputCT} name='city1' placeholder='Пункт отправления'/>
+                        </div>
+                        <div>
+                            <input className={cl.inputCT} name='date1' placeholder='Дата отправления (гггг-мм-дд)'/>
+                            <input className={cl.inputCT} name='date2' placeholder='Дата возвращения (гггг-мм-дд)'/>
+                        </div>
+                        <div>
+                            <input className={cl.inputCT} name='country' placeholder='Страна'/>
+                            <input className={cl.inputCT} name='price' placeholder='Цена (₽)'/>
+                        </div>
                         <div className={cl.specificInputsBox}>
                             <textarea className={cl.MyTextarea} name='description' placeholder='Описание'></textarea>
                             <select className={cl.MyTextarea} name='tourOperator'>
                                 {tourOperators.map(({id, title}) =>
-                                    <option value={id}>{title}</option>
+                                    <option key={id} value={id}>{title}</option>
                                 )}
                             </select>
                         </div>
@@ -79,7 +79,7 @@ const TourEditor = () => {
                             </button>
                         </div>
                     </form>
-                </>
+                </div>
             }
         </div>
     );

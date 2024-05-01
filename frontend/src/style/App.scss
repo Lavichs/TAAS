@@ -8,6 +8,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: url("../../public/images/fon-pattern.jpg");
+    min-height: 100vh;
 }
 
 .App {
@@ -16,6 +18,9 @@
     //width: calc($min_size + ($max_size - $min_size) * ((100vw - 500px) / (1920–500)));
     width: 80%;
     margin-top: 20px;
+    background-color: white;
+    padding: 20px;
+    opacity: 0.95;
 }
 
 .catalog, .booking, #editor {
