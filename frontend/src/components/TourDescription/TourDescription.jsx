@@ -13,9 +13,6 @@ const TourDescription = ({currentTour, toBook}) => {
             <h2>{currentTour.country}</h2>
             <p>Даты: {currentTour.date1} - {currentTour.date2} (3 мая) </p>
             <p>Продолжительность: (7 ночей)</p>
-            <p>Цена:
-                {currentTour.discount ? <del>{currentTour.price}</del> : <></> }
-            </p>
             <p>Цена: {currentTour.discount ? <del>{currentTour.price}</del> : <></>} {newPrice}₽</p>
 
             <p>{currentTour.description}</p>

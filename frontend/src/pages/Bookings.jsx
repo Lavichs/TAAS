@@ -63,7 +63,8 @@ const Bookings = () => {
                 <BookingDescription currentBooking={currentBooking} setVisible={setModalDesc} fetchBookings={fetchBookings}/>
             </MyModal>
             <h1 style={{display: "flex", justifyContent: "center", marginBottom: 30}}>ЖУРНАЛ</h1>
-            {bookingError &&
+            {bookingError
+                ?
                 <h1 style={{
                     display: "flex",
                     justifyContent: "center",
@@ -71,15 +72,16 @@ const Bookings = () => {
                 }}>
                     Упс, что-то пошло не так.<br/>Пожалуйста, повторите попытку позже
                 </h1>
-            }
-            {isBookingLoading
-                ? <div style={{display: "flex", justifyContent: "center", marginTop: 60}}><Loader/></div>
                 :
-                <>
-                    <MyListBooking bookings={bookings} chooseItem={chooseItem} correction={limit * (page - 1)}/>
-                    <Pagination pages={pagesArray} page={page} setPage={setPage} totalPage={totalPages}/>
-                </>
+                isBookingLoading
+                    ? <div style={{display: "flex", justifyContent: "center", marginTop: 60}}><Loader/></div>
+                    :
+                    <>
+                        <MyListBooking bookings={bookings} chooseItem={chooseItem} correction={limit * (page - 1)}/>
+                        <Pagination pages={pagesArray} page={page} setPage={setPage} totalPage={totalPages}/>
+                    </>
             }
+
         </div>
     );
 };
