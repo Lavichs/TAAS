@@ -6,7 +6,7 @@ import axios from "axios";
 import Loader from "../components/Loader/Loader";
 import {useFetching} from "../hooks/useFetching";
 import TourService from "../API/TourService";
-import {API_RESOURCE_TOURS} from "../API/constsURL";
+import {API_AUTHORIZATION, API_RESOURCE_TOURS, API_TEST} from "../API/constsURL";
 import {getPageCount} from "../utils/pages";
 import Pagination from "../components/Pagination/Pagination";
 import BookingTour from "../components/BookingTour/BookingTour";
@@ -42,13 +42,25 @@ const Catalog = () => {
     }, [totalPages]);
 
     const test = async () => {
-        const response = await axios.get(API_RESOURCE_TOURS, {
-            params: {
-                _limit: limit,
-                _page: page
-            }
-        });
-        console.log(response.data)
+        // const response = await axios.get(API_RESOURCE_TOURS, {
+        //     params: {
+        //         _limit: limit,
+        //         _page: page
+        //     }
+        // });
+        // const response = await axios.post(API_TEST);
+        // console.log(response.data)
+        await axios.post(API_AUTHORIZATION, {
+            login: 'Fred',
+            password: 'BR_jgt^67'
+        })
+            .then(function (response) {
+                console.log(response);
+                console.log(response.data.token);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     useEffect(() => {
