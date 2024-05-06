@@ -18,21 +18,51 @@ const BookingDescription = ({currentBooking, setVisible, fetchBookings}) => {
         const m = methodSelect.current;
         const payMethod = m.options[m.selectedIndex].text;
         const response = await BookingService.update(currentBooking.id, status, payMethod)
-        console.log(response);
 
         setVisible(false)
         setIsChanging(false)
         fetchBookings()
     }
 
+    function formatDateRange(date1Str, date2Str) {
+        const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+            'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+
+        const date1 = new Date(date1Str);
+        const date2 = new Date(date2Str);
+
+        if (date1.getMonth() !== date2.getMonth()) {
+            const startDate = date1.getDate();
+            const startMonth = months[date1.getMonth()];
+            const endDate = date2.getDate();
+            const endMonth = months[date2.getMonth()];
+            const year = date1.getFullYear();
+
+            return `${startDate} ${startMonth} - ${endDate} ${endMonth} ${year}`;
+        } else {
+            const startDate = date1.getDate();
+            const endDate = date2.getDate();
+            const month = months[date1.getMonth()];
+            const year = date1.getFullYear();
+
+            return `${startDate}-${endDate} ${month} ${year}`;
+        }
+    }
+
+    function returnFIO(surname, name, patronimyc) {
+        return surname + ' ' + name[0] + '.' + patronimyc[0] + '.'
+    }
+
     return (
         <div className={cl.tourCard}>
-            <h2>Страна: Италия</h2>
-            <p>Откуда: Москва</p>
-            <p>Куда: Рим</p>
-            <p>Даты: 20-25 сентября 2022</p>
-            <p>Цена: $1000</p>
-            <p>Статус: <span className={cl.status}>Забронировано</span></p>
+            <h2>Страна: {currentBooking.country}</h2>
+            <p>Откуда: {currentBooking.cityFrom}</p>
+            <p>Куда: {currentBooking.cityTo}</p>
+            <p>Даты: {formatDateRange(currentBooking.date1, currentBooking.date2)}</p>
+            <p>Цена: {currentBooking.cost}₽₽</p>
+            <p>Статус: <span className={cl.status}>Забронировано. {currentBooking.status}</span></p>
+            <p>Клиент: {returnFIO(currentBooking.surnameClient, currentBooking.nameClient, currentBooking.patronymicClient)}</p>
+            <p>Сотрудник: {returnFIO(currentBooking.surnameEmployee, currentBooking.nameEmployee, currentBooking.patronymicEmployee)}</p>
             <button className={cl.changeStatus} onClick={() => setIsChanging(!isChanging)}>Изменить статус</button>
             {isChanging &&
                 <div className={cl.inputBox}>
@@ -62,27 +92,6 @@ const BookingDescription = ({currentBooking, setVisible, fetchBookings}) => {
                 </div>
             }
         </div>
-
-
-
-        // <div className={cl.booking_container}>
-        //     <h2>{currentBooking.country}</h2>
-        //     <h4></h4>
-        //     <div className={cl.bookingDesc}>
-        //         <p>
-        //             Дата отправления: дата1
-        //         </p>
-        //         <p>
-        //             Дата отправления: дата2
-        //         </p>
-        //         <p>
-        //             Туроператор
-        //         </p>
-        //         <p>
-        //             Цена
-        //         </p>
-        //     </div>
-        // </div>
     );
 };
 

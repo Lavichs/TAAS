@@ -63,7 +63,7 @@
     border: 1px solid #0056b3;
 }
 option:disabled {
-     color: #ffffff;
+     color: #000;
 }
 
 

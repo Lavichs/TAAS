@@ -10,16 +10,9 @@ const BookingTour = ({setVisible, tourId, tourPrice}) => {
     const submit = e => {
         e.preventDefault()
         BookingService.create(data, token)
-        console.log(data)
     }
     const updateData = e => {
         setData({
-            tourId,
-            tourPrice,
-            ...data,
-            [e.target.name]: e.target.value
-        })
-        console.log({
             tourId,
             tourPrice,
             ...data,

@@ -24,8 +24,8 @@ const Bookings = () => {
     const [fetchBookings, isBookingLoading, bookingError] = useFetching(async () => {
         const response = await BookingService.getAll(limit, page);
         setBooking(response.data[1]);
+        console.log(response.data);
         const totalCount = response.data[0].xTotalCount;
-        console.log(response.data[1][0])
 
         setTotalPages(getPageCount(totalCount, limit));
     });
