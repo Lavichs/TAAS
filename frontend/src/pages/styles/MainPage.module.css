@@ -1,0 +1,33 @@
+.main {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 15%;
+}
+
+.brandLogo {
+    height: 150px;
+    width: 150px;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.description {
+
+}
+
+.h2 {
+    font-size: 1.8rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}

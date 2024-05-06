@@ -5,31 +5,10 @@ import Logo from '../../public/images/albatros-without-background-2.png';
 import {AuthContext} from "../context";
 import DocumentService from "../API/DocumentService";
 import {API_REPORT, API_RESOURCE_TOURS} from "../API/constsURL";
-import FileSaver from 'file-saver';
 
 const NavBar = () => {
     const {token, setToken, role, setRole} = useContext(AuthContext)
     const navigate = useNavigate()
-
-    function downloadReport() {
-        const response = DocumentService.getReport();
-        console.log(response);
-    }
-
-    // const downloadDocxFile = async () => {
-    //         // const response = DocumentService.getReport();
-    //
-    //         const response = await fetch(API_REPORT);
-    //         const blob = await response.blob();
-    //
-    //         const url = window.URL.createObjectURL(new Blob([blob]));
-    //         const link = document.createElement('a');
-    //         link.href = url;
-    //         link.setAttribute('download', 'document.docx');
-    //         document.body.appendChild(link);
-    //         link.click();
-    //         link.remove();
-    // };
 
     const downloadDocxFile = async () => {
         try {
@@ -48,20 +27,21 @@ const NavBar = () => {
 
     return (
         <div className='navBar'>
-            <Link className="nav-link" to={MAIN_ROUTE}>
-                <img style={{height: 'calc(3rem + 8px)', marginTop: '4px'}} src={Logo}/>
-            </Link>
+            {token &&
+                <Link className="nav-link" to={MAIN_ROUTE}>
+                    <img style={{height: 'calc(3rem + 8px)', marginTop: '4px'}} src={Logo}/>
+                </Link>
+            }
             <div className="link-group">
                 {token &&
                     <>
-                        <Link className="nav-link" to={CATALOG_ROUTE}>CATALOG</Link>
-                        <Link className="nav-link" to={BOOKINGS_ROUTE}>BOOKINGS</Link>
+                        <Link className="nav-link" to={CATALOG_ROUTE}>КАТАЛОГ</Link>
+                        <Link className="nav-link" to={BOOKINGS_ROUTE}>БРОНИРОВАНИЯ</Link>
                     </>
                 }
-                {token && role === 'admin' &&
+                {token && (role === 'admin' || role === 'менеджер') &&
                     <>
                         <button onClick={downloadDocxFile}>Отчет о продажах</button>
-                        <a href={API_REPORT} download>Click to download</a>
                     </>
                 }
 
