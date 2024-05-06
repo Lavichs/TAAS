@@ -1,5 +1,7 @@
 import axios from "axios";
 import {API_RESOURCE_BOOKINGS_CREATE, API_RESOURCE_BOOKINGS_GET, API_RESOURCE_BOOKINGS_PUT} from "./constsURL";
+import {useContext} from "react";
+import {AuthContext} from "../context";
 
 export default class BookingService {
     static async getAll(limit = 10, page = 1) {
@@ -20,12 +22,11 @@ export default class BookingService {
             }
         })
     }
-    static async create(tourId, client) {
-        return await axios.get(API_RESOURCE_BOOKINGS_CREATE, {
-            params: {
+    static async create({tourId, ...client}, token) {
+        return await axios.post(API_RESOURCE_BOOKINGS_CREATE, {
+                token,
                 tourId,
                 ...client
-            }
         })
     }
 }

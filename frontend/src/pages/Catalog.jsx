@@ -98,7 +98,7 @@ const Catalog = () => {
                         <TourDescription currentTour={currentTour} toBook={bookingTour}/>
                     </MyModal>
                     <MyModal visible={modalBook} setVisible={setModalBook}>
-                        <BookingTour setVisible={setModalBook} tourID={currentTour?.id}/>
+                        <BookingTour setVisible={setModalBook} tourId={currentTour?.id} tourPrice={currentTour?.price}/>
                     </MyModal>
                 </>
             }

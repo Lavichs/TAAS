@@ -1,23 +1,27 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import cl from './BookingTour.module.css'
 import BookingService from "../../API/BookingService";
+import {AuthContext} from "../../context";
 
-const BookingTour = ({setVisible, tourId}) => {
-    const [data, setData] = useState({})
+const BookingTour = ({setVisible, tourId, tourPrice}) => {
+    const [data, setData] = useState({});
+    const {token} = useContext(AuthContext);
 
     const submit = e => {
         e.preventDefault()
+        BookingService.create(data, token)
         console.log(data)
-        BookingService.create(data)
     }
     const updateData = e => {
         setData({
             tourId,
+            tourPrice,
             ...data,
             [e.target.name]: e.target.value
         })
         console.log({
             tourId,
+            tourPrice,
             ...data,
             [e.target.name]: e.target.value
         })
@@ -40,7 +44,9 @@ const BookingTour = ({setVisible, tourId}) => {
                     <input name="tel" placeholder='Номер телефона'/>
                     <input name="email" placeholder='Почта'/>
                 </div>
-                <button className={[cl.myBtn, cl.btnSubmit].join(' ')}>
+                <button className={[cl.myBtn, cl.btnSubmit].join(' ')} onClick={() => {
+                    setVisible(false)
+                }}>
                     Сохранить
                 </button>
                 <button className={[cl.myBtn, cl.btnCancel].join(' ')} type='reset' onClick={() => {
