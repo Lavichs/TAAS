@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import cl from './TourDescription.module.css';
+import MyButton from "../Button/MyButton";
+import {AuthContext} from "../../context";
 
-const TourDescription = ({currentTour, toBook}) => {
+const TourDescription = ({currentTour, toBook, removeTour}) => {
+    const {token, setToken, role, setRole} = useContext(AuthContext)
     const newPrice = currentTour.discount ? currentTour.price * ((100 - currentTour.discount) / 100) : currentTour.price;
     if (!currentTour) {
         return <h1>Тур не выбран</h1>
@@ -16,7 +19,15 @@ const TourDescription = ({currentTour, toBook}) => {
             <p>Цена: {currentTour.discount ? <del>{currentTour.price}</del> : <></>} {newPrice}₽</p>
 
             <p>{currentTour.description}</p>
-            <button className={cl.toBook} onClick={toBook}>Забронировать</button>
+            <div className={cl.buttonsBlock}>
+                <button className={cl.toBook} onClick={toBook}>Забронировать</button>
+                {token && (role === 'admin' || role === 'менеджер') &&
+                    <>
+                        <MyButton type='remove' onClick={() => removeTour(currentTour)}>Удалить</MyButton>
+                    </>
+                }
+            </div>
+
         </div>
     );
 };

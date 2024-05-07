@@ -6,14 +6,16 @@ import axios from "axios";
 import Loader from "../components/Loader/Loader";
 import {useFetching} from "../hooks/useFetching";
 import TourService from "../API/TourService";
-import {API_AUTHORIZATION, API_RESOURCE_TOURS, API_TEST} from "../API/constsURL";
+import {API_AUTHORIZATION, API_RESOURCE_TOURS, API_RESOURCE_TOURS_DELETE} from "../API/constsURL";
 import {getPageCount} from "../utils/pages";
 import Pagination from "../components/Pagination/Pagination";
 import BookingTour from "../components/BookingTour/BookingTour";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {CREATE_TOUR} from "../consts";
+import MyButton from "../components/Button/MyButton";
 
 const Catalog = () => {
+    const navigate = useNavigate()
     const [tours, setTours] = useState([]);
     const tour = {id: 1, country: 'Russia', city1: 'Orenburg', city2: 'Moscow', price: 15000};
 
@@ -41,28 +43,6 @@ const Catalog = () => {
         setPagesArray(newArray);
     }, [totalPages]);
 
-    const test = async () => {
-        // const response = await axios.get(API_RESOURCE_TOURS, {
-        //     params: {
-        //         _limit: limit,
-        //         _page: page
-        //     }
-        // });
-        // const response = await axios.post(API_TEST);
-        // console.log(response.data)
-        await axios.post(API_AUTHORIZATION, {
-            login: 'Fred',
-            password: 'BR_jgt^67'
-        })
-            .then(function (response) {
-                console.log(response);
-                console.log(response.data.token);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    }
-
     useEffect(() => {
         fetchTours()
     }, [page])
@@ -88,14 +68,20 @@ const Catalog = () => {
         return () => window.removeEventListener('keydown', close)
     },[])
 
+    const removeTour = async (tour) => {
+        setTours(tours.filter(t => t.id !== tour.id))
+        await axios.post(API_RESOURCE_TOURS_DELETE, {
+            id: tour.id
+        })
+        setModalDesc(false)
+    }
+    
     return (
         <div className='catalog'>
-            <button onClick={test}>Test</button>
-            <button><Link to={CREATE_TOUR}>Create tour</Link></button>
             {currentTour &&
                 <>
                     <MyModal visible={modalDesc} setVisible={setModalDesc}>
-                        <TourDescription currentTour={currentTour} toBook={bookingTour}/>
+                        <TourDescription currentTour={currentTour} toBook={bookingTour} removeTour={removeTour}/>
                     </MyModal>
                     <MyModal visible={modalBook} setVisible={setModalBook}>
                         <BookingTour setVisible={setModalBook} tourId={currentTour?.id} tourPrice={currentTour?.price}/>
@@ -104,6 +90,7 @@ const Catalog = () => {
             }
 
             <h1 style={{display: "flex", justifyContent: "center", marginBottom: 30}}>КАТАЛОГ</h1>
+            <MyButton type='create' onClick={() => navigate(CREATE_TOUR)}>Создать тур</MyButton>
             {tourError &&
                 <h1 style={{
                     display: "flex",

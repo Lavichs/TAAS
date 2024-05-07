@@ -1,0 +1,36 @@
+.buttonRemove {
+    width: 160px;
+    background-color: #d30000;
+    color: #fff;
+    padding: 10px 10px;
+    /*border: none;*/
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 17px;
+    border: 1px solid #00021a;
+    box-shadow: 4px 4px #ccc;
+}
+
+.buttonRemove:hover {
+    background-color: red;
+}
+
+.buttonCreate {
+    width: 160px;
+    background-color: rgba(255, 215, 0, 0.58);
+    color: rgba(0, 39, 238, 0.58);
+    padding: 10px 10px;
+    /*border: none;*/
+    border-radius: 10rem;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 17px;
+    border: 1px solid #00021a;
+    box-shadow: 4px 4px #ccc;
+}
+
+.buttonCreate:hover {
+    background-color: rgba(222, 186, 0, 0.58);
+}
+

@@ -9,6 +9,7 @@ import MyListTour from "../components/Lists/ListTour/MyListTour";
 
 const TourEditor = () => {
     const [data, setData] = useState({})
+    const [errorMessage, setErrorMessage] = useState('')
     const [tourOperators, setTourOperators] = useState([])
 
     const [fetchTO, isTOLoading, TOError] = useFetching(async () => {
@@ -20,13 +21,18 @@ const TourEditor = () => {
         fetchTO()
     }, [])
 
-    const submit = e => {
+    const submit = async e => {
         e.preventDefault()
         console.log(data)
 
-        TourService.create(data)
+        const response = await TourService.create(data);
+        console.log(response)
+
+        e.target.reset();
+        setErrorMessage('Тур создан')
     }
     const updateData = e => {
+        e.target.se
         setData({
             ...data,
             [e.target.name]: e.target.value
@@ -51,12 +57,12 @@ const TourEditor = () => {
                 <div style={{display: "flex", justifyContent: "center"}}>
                     <form onSubmit={submit} onChange={updateData}>
                         <div>
-                            <input className={cl.inputCT} name='city2' placeholder='Пункт назначения'/>
                             <input className={cl.inputCT} name='city1' placeholder='Пункт отправления'/>
+                            <input className={cl.inputCT} name='city2' placeholder='Пункт назначения'/>
                         </div>
                         <div>
-                            <input className={cl.inputCT} name='date1' placeholder='Дата отправления (гггг-мм-дд)'/>
-                            <input className={cl.inputCT} name='date2' placeholder='Дата возвращения (гггг-мм-дд)'/>
+                            <input className={cl.inputCT} type='date' name='date1' placeholder='Дата отправления (гггг-мм-дд)'/>
+                            <input className={cl.inputCT} type='date' name='date2' placeholder='Дата возвращения (гггг-мм-дд)'/>
                         </div>
                         <div>
                             <input className={cl.inputCT} name='country' placeholder='Страна'/>
@@ -65,10 +71,14 @@ const TourEditor = () => {
                         <div className={cl.specificInputsBox}>
                             <textarea className={cl.MyTextarea} name='description' placeholder='Описание'></textarea>
                             <select className={cl.MyTextarea} name='tourOperator'>
+                                <option key='-' value='-'>-</option>
                                 {tourOperators.map(({id, title}) =>
                                     <option key={id} value={id}>{title}</option>
                                 )}
                             </select>
+                        </div>
+                        <div className={cl.eMBlock}>
+                            <label className={cl.errorMessage}>{errorMessage}</label>
                         </div>
                         <div className={cl.buttonsBox}>
                             <button className={[cl.myBtn, cl.btnSubmit].join(' ')}>

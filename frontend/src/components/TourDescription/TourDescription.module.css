@@ -29,7 +29,14 @@ h2 {
     margin-bottom: 10px;
 }
 
+.buttonsBlock {
+    display: flex;
+    justify-content: space-between;
+}
 
+.buttonsBlock * {
+    margin-right: 10px;
+}
 
 
 
