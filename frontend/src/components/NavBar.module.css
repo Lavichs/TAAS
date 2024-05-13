@@ -1,0 +1,10 @@
+.btnReport {
+    transition: all .1s linear;
+    text-transform: uppercase;
+    padding: .55rem 1.05rem;
+    border-radius: 15px;
+    background-color: #20b2ff;
+    color: white;
+}
+
+

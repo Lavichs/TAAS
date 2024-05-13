@@ -2,6 +2,9 @@ import React, {useRef, useState} from 'react';
 import cl from './BookingDescription.module.css'
 import {BOOKING_STATUSES, PAY_METHODS} from "../../consts";
 import BookingService from "../../API/BookingService";
+import DocumentService from "../../API/DocumentService";
+import {formatDateRange} from "../../utils/dates";
+import {downloadDocxFile} from "../../utils/docs";
 
 const BookingDescription = ({currentBooking, setVisible, fetchBookings}) => {
     const [isChanging, setIsChanging] = useState(false)
@@ -24,34 +27,25 @@ const BookingDescription = ({currentBooking, setVisible, fetchBookings}) => {
         fetchBookings()
     }
 
-    function formatDateRange(date1Str, date2Str) {
-        const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
-            'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-
-        const date1 = new Date(date1Str);
-        const date2 = new Date(date2Str);
-
-        if (date1.getMonth() !== date2.getMonth()) {
-            const startDate = date1.getDate();
-            const startMonth = months[date1.getMonth()];
-            const endDate = date2.getDate();
-            const endMonth = months[date2.getMonth()];
-            const year = date1.getFullYear();
-
-            return `${startDate} ${startMonth} - ${endDate} ${endMonth} ${year}`;
-        } else {
-            const startDate = date1.getDate();
-            const endDate = date2.getDate();
-            const month = months[date1.getMonth()];
-            const year = date1.getFullYear();
-
-            return `${startDate}-${endDate} ${month} ${year}`;
-        }
-    }
-
     function returnFIO(surname, name, patronimyc) {
-        return surname + ' ' + name[0] + '.' + patronimyc[0] + '.'
+        // return surname + ' ' + name[0] + '.' + patronimyc[0] + '.'
+        return surname + ' ' + name + ' ' + patronimyc
     }
+
+    // const downloadDocxFile = async (idBooking) => {
+    //     try {
+    //         const response = await DocumentService.getContract(idBooking);
+    //         const url = URL.createObjectURL(new Blob([response.data]));
+    //         const link = document.createElement('a');
+    //         link.href = url;
+    //         link.setAttribute('download', 'downloaded_file.docx');
+    //         document.body.appendChild(link);
+    //         link.click();
+    //         URL.revokeObjectURL(url);
+    //     } catch (error) {
+    //         console.error('Error downloading the Word file:', error);
+    //     }
+    // };
 
     return (
         <div className={cl.tourCard}>
@@ -59,11 +53,20 @@ const BookingDescription = ({currentBooking, setVisible, fetchBookings}) => {
             <p>Откуда: {currentBooking.cityFrom}</p>
             <p>Куда: {currentBooking.cityTo}</p>
             <p>Даты: {formatDateRange(currentBooking.date1, currentBooking.date2)}</p>
-            <p>Цена: {currentBooking.cost}₽₽</p>
+            <p>Цена: {currentBooking.cost}₽</p>
             <p>Статус: <span className={cl.status}>Забронировано. {currentBooking.status}</span></p>
             <p>Клиент: {returnFIO(currentBooking.surnameClient, currentBooking.nameClient, currentBooking.patronymicClient)}</p>
             <p>Сотрудник: {returnFIO(currentBooking.surnameEmployee, currentBooking.nameEmployee, currentBooking.patronymicEmployee)}</p>
-            <button className={cl.changeStatus} onClick={() => setIsChanging(!isChanging)}>Изменить статус</button>
+            <div className={cl.buttonsBlock}>
+                <button className={cl.changeStatus} onClick={() => setIsChanging(!isChanging)}>
+                    Изменить статус
+                </button>
+                <button className={[cl.myBtn, cl.btnSpecial].join(' ')} onClick={() => {
+                    downloadDocxFile(DocumentService.getContract, 'Договор', currentBooking.id)
+                }}>
+                    Договор
+                </button>
+            </div>
             {isChanging &&
                 <div className={cl.inputBox}>
                     <select ref={statusSelect} className={cl.mySelect} name='status'>
@@ -79,7 +82,9 @@ const BookingDescription = ({currentBooking, setVisible, fetchBookings}) => {
                         )}
                     </select>
                     <div>
-                        <button className={[cl.myBtn, cl.btnSubmit].join(' ')} onClick={changeBooking}>
+                        <button className={[cl.myBtn, cl.btnSubmit].join(' ')} onClick={() => {
+                            changeBooking()
+                        }}>
                             Сохранить
                         </button>
                         <button className={[cl.myBtn, cl.btnCancel].join(' ')} onClick={() => {

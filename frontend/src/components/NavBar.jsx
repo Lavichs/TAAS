@@ -5,25 +5,12 @@ import Logo from '../../public/images/albatros-without-background-2.png';
 import {AuthContext} from "../context";
 import DocumentService from "../API/DocumentService";
 import {API_REPORT, API_RESOURCE_TOURS} from "../API/constsURL";
+import cl from './NavBar.module.css'
+import {downloadDocxFile} from "../utils/docs";
 
 const NavBar = () => {
     const {token, setToken, role, setRole} = useContext(AuthContext)
     const navigate = useNavigate()
-
-    const downloadDocxFile = async () => {
-        try {
-            const response = await DocumentService.getReport();
-            const url = URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'downloaded_file.docx');
-            document.body.appendChild(link);
-            link.click();
-            URL.revokeObjectURL(url);
-        } catch (error) {
-            console.error('Error downloading the Word file:', error);
-        }
-    };
 
     return (
         <div className='navBar'>
@@ -41,7 +28,7 @@ const NavBar = () => {
                 }
                 {token && (role === 'admin' || role === 'менеджер') &&
                     <>
-                        <button onClick={downloadDocxFile}>Отчет о продажах</button>
+                        <button onClick={() => {downloadDocxFile(DocumentService.getReport, 'Отчёт_о_продажах')}} className={cl.btnReport}>Отчет о продажах</button>
                     </>
                 }
 

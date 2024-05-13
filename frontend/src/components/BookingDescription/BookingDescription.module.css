@@ -94,3 +94,19 @@ option:disabled {
     color: white;
 }
 
+.btnSpecial {
+    width: 160px;
+    padding: 10px 10px;
+    margin-left: 20px;
+    outline: #50c878;
+    background-color: white;
+}
+.btnSpecial:hover {
+    background-color: #419f60;
+    color: white;
+}
+
+.buttonsBlock {
+    display: flex;
+    justify-content: space-between;
+}

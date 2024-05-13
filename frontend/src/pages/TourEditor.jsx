@@ -6,11 +6,14 @@ import {getPageCount} from "../utils/pages";
 import TourOperatorService from "../API/TourOperatorService";
 import Loader from "../components/Loader/Loader";
 import MyListTour from "../components/Lists/ListTour/MyListTour";
+import {useNavigate} from "react-router-dom";
+import {CATALOG_ROUTE} from "../consts";
 
 const TourEditor = () => {
     const [data, setData] = useState({})
     const [errorMessage, setErrorMessage] = useState('')
     const [tourOperators, setTourOperators] = useState([])
+    const navigate = useNavigate()
 
     const [fetchTO, isTOLoading, TOError] = useFetching(async () => {
         const response = await TourOperatorService.getAll();
@@ -30,6 +33,10 @@ const TourEditor = () => {
 
         e.target.reset();
         setErrorMessage('Тур создан')
+
+        setTimeout(() => {
+            navigate(CATALOG_ROUTE)
+        }, 1500)
     }
     const updateData = e => {
         e.target.se

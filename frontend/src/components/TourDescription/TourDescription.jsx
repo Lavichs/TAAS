@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import cl from './TourDescription.module.css';
 import MyButton from "../Button/MyButton";
 import {AuthContext} from "../../context";
+import {differenceDate, formatDateRange} from "../../utils/dates";
 
 const TourDescription = ({currentTour, toBook, removeTour}) => {
     const {token, setToken, role, setRole} = useContext(AuthContext)
@@ -14,14 +15,14 @@ const TourDescription = ({currentTour, toBook, removeTour}) => {
     return (
         <div className={cl.tourCard}>
             <h2>{currentTour.country}</h2>
-            <p>Даты: {currentTour.date1} - {currentTour.date2} (3 мая) </p>
-            <p>Продолжительность: (7 ночей)</p>
+            <p>Даты: {formatDateRange(currentTour.date1, currentTour.date2)}</p>
+            <p>Продолжительность: {differenceDate(currentTour.date1, currentTour.date2)} дня(-ей)</p>
             <p>Цена: {currentTour.discount ? <del>{currentTour.price}</del> : <></>} {newPrice}₽</p>
 
             <p>{currentTour.description}</p>
             <div className={cl.buttonsBlock}>
                 <button className={cl.toBook} onClick={toBook}>Забронировать</button>
-                {token && (role === 'admin' || role === 'менеджер') &&
+                {token && role === 'admin' &&
                     <>
                         <MyButton type='remove' onClick={() => removeTour(currentTour)}>Удалить</MyButton>
                     </>

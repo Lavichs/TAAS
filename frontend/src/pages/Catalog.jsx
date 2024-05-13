@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import MyListTour from "../components/Lists/ListTour/MyListTour";
 import MyModal from "../components/MyModal/MyModal";
 import TourDescription from "../components/TourDescription/TourDescription";
@@ -13,8 +13,10 @@ import BookingTour from "../components/BookingTour/BookingTour";
 import {Link, useNavigate} from "react-router-dom";
 import {CREATE_TOUR} from "../consts";
 import MyButton from "../components/Button/MyButton";
+import {AuthContext} from "../context";
 
 const Catalog = () => {
+    const {token, setToken, role, setRole} = useContext(AuthContext)
     const navigate = useNavigate()
     const [tours, setTours] = useState([]);
     const tour = {id: 1, country: 'Russia', city1: 'Orenburg', city2: 'Moscow', price: 15000};
@@ -75,7 +77,7 @@ const Catalog = () => {
         })
         setModalDesc(false)
     }
-    
+
     return (
         <div className='catalog'>
             {currentTour &&
@@ -90,7 +92,9 @@ const Catalog = () => {
             }
 
             <h1 style={{display: "flex", justifyContent: "center", marginBottom: 30}}>КАТАЛОГ</h1>
-            <MyButton type='create' onClick={() => navigate(CREATE_TOUR)}>Создать тур</MyButton>
+            {token && role === 'admin' &&
+                <MyButton type='create' onClick={() => navigate(CREATE_TOUR)}>Создать тур</MyButton>
+            }
             {tourError &&
                 <h1 style={{
                     display: "flex",
