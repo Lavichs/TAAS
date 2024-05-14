@@ -16,7 +16,7 @@
     /*min-width: 60%;*/
     /*max-width: 70%;*/
     width: 60%;
-    height: auto;
+    max-height: 85%;
     min-height: 40%;
     overflow-y: scroll;
 }

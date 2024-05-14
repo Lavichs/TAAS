@@ -1,0 +1,17 @@
+.MyInput {
+    display: flex;
+    flex-direction: column;
+}
+.MyInput_input{
+    outline: none;
+    transition: all .1s linear;
+    padding: .55rem 2.05rem;
+    border-radius: 5px;
+    margin-top: 15px;
+    margin-right: 10px;
+    width: 15rem;
+}
+
+.MyInput_label{
+    color: red;
+}

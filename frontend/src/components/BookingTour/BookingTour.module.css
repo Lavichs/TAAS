@@ -8,7 +8,12 @@
 }
 
 .inputBox {
-    margin-top: 20px;
+    /*margin-top: 20px;*/
+    display: flex;
+    align-items: center;
+}
+.inputBox * {
+    margin-right: 5px;
 }
 
 
@@ -44,13 +49,13 @@
 /*    color: white;*/
 /*}*/
 
-input {
-    outline: none;
-    transition: all .1s linear;
-    padding: .55rem 2.05rem;
-    border-radius: 5px;
-    margin-top: 15px;
-    margin-right: 10px;
-}
+/*input {*/
+/*    outline: none;*/
+/*    transition: all .1s linear;*/
+/*    padding: .55rem 2.05rem;*/
+/*    border-radius: 5px;*/
+/*    margin-top: 15px;*/
+/*    margin-right: 10px;*/
+/*}*/
 
 
