@@ -20,3 +20,5 @@ sketch
 frontend/build
 frontend/public/images
 frontend/src/API/constsURL.js
+
+backend/database
